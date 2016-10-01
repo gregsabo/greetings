@@ -1,5 +1,16 @@
 
 var ingredientInterval;
+var flashInterval;
+var phraseInterval;
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 function addIngredient() {
   var num = String(Math.floor((Math.random() * 58) + 172));
@@ -24,9 +35,34 @@ function addIngredient() {
   }, 5000);
 }
 
+function choose(inList) {
+  return inList[Math.floor(Math.random() * inList.length)];
+}
+
+function flashBackground() {
+  $("body").css({
+    "background-color": getRandomColor(),
+  });
+}
+
+function showAPhrase() {
+  var phrase = $(choose($(".phrase")));
+  phrase.css({
+    "left": String(Math.random() * 70) + '%',
+    "top": String(Math.random() * 70) + '%'
+  });
+  phrase.show();
+  setTimeout(function() {
+    phrase.hide();
+  }, 1500);
+}
+
 function startAddingIngredients() {
+  stopAddingIngredients();
   $("#tutorial").fadeOut();
-  ingredientInterval = setInterval(addIngredient, 100);
+  ingredientInterval = setInterval(addIngredient, 300);
+  flashInterval = setInterval(flashBackground, 100);
+  phraseInterval = setInterval(showAPhrase, 3000);
 }
 
 function stopAddingIngredients() {
@@ -34,6 +70,13 @@ function stopAddingIngredients() {
   if (ingredientInterval) {
     clearInterval(ingredientInterval);
   }
+  if (flashInterval) {
+    clearInterval(flashInterval);
+  }
+  if (phraseInterval) {
+    clearInterval(phraseInterval);
+  }
+  $("body").css({"background-color": "white"});
 }
 
 function watchForHoldEvent() {
