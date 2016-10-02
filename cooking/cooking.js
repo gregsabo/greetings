@@ -81,6 +81,7 @@ function stopAddingIngredients() {
 
 function watchForHoldEvent() {
   $("#pot").on("mousedown", function() {
+    $("audio").get(0).play();
     startAddingIngredients();
   });
 
