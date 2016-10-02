@@ -91,9 +91,10 @@ function showAPhrase() {
 function startAddingIngredients() {
   stopAddingIngredients();
   $("#tutorial").fadeOut();
-  ingredientInterval = setInterval(addIngredient, 100);
-  flashInterval = setInterval(flashBackground, 300);
+  ingredientInterval = setInterval(addIngredient, 50);
+  /*flashInterval = setInterval(flashBackground, 300);*/
   phraseInterval = setInterval(showAPhrase, 3000);
+  $("body").css({"background-color": "black"});
 }
 
 function stopAddingIngredients() {
