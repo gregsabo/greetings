@@ -6,5 +6,5 @@ $(function() {
         color: "rgb(" + value + ',' + value + ',' + value + ')',
       })
     });
-  }, 1000);
+  }, 1776);
 });
